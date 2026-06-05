@@ -381,7 +381,7 @@ nav .account:hover {
   margin-top: 30px;
   border: 2px solid rgb(24, 49, 83);
   height: 45px;
-  width: 160px;
+  width: fit-content;
   display: flex;
   justify-content: center;
   align-items: center;

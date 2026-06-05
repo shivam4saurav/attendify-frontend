@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState } from 'react';
-import '../index.css';
+import '../../index.css';
 import Popup from 'reactjs-popup';
-import { AttendContext } from '../contexts/AttendContext';
+import { AttendContext } from '../../contexts/AttendContext';
 
 const AddSub = () => {
   const { addSub } = useContext(AttendContext);

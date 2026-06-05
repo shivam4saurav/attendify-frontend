@@ -14,7 +14,7 @@ const Splash = () => {
   return (
     <div id="splash-screen">
       <img src="/splash.gif" alt="Loading..." />
-      <h1 className="splash">&lt; AtCOM &gt;</h1>
+      <h1 className="splash">&lt; Attendify &gt;</h1>
     </div>
   );
 };

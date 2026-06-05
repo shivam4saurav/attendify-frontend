@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
 import '../index.css';
-import SubItem from './SubItem';
-import AddSub from './AddSub';
-import BarGraph from './BarGraph';
-import PieGraph from './PieGraph';
+import SubItem from '../components/subject/SubItem';
+import AddSub from '../components/subject/AddSub';
+import BarGraph from '../components/BarGraph';
+import PieGraph from '../components/PieGraph';
 import { AttendContext } from '../contexts/AttendContext';
 import { AuthContext } from '../contexts/AuthContext';
-import NoSubjects from './NoSubjects';
+import NoSubjects from '../components/NoSubjects';
 import { useNavigate } from 'react-router-dom';
 
-const Subjects = () => {
+const SubjectPage = () => {
   const [goal, setGoal] = useState(
     localStorage.getItem('goal') ? parseFloat(localStorage.getItem('goal')) : 75
   );
@@ -72,4 +72,4 @@ const Subjects = () => {
   );
 };
 
-export default Subjects;
+export default SubjectPage;

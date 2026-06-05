@@ -28,7 +28,7 @@ const Navbar = () => {
   return (
     <nav>
       <div className="logo">
-        <Link to="/">&lt; AtCOM &gt;</Link>
+        <Link to="/">&lt; Attendify &gt;</Link>
       </div>
       <div className="nav-items" id="res-navbar">
         <ul>

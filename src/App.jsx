@@ -5,14 +5,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import LoadingBar from 'react-top-loading-bar';
 import AttendState from './contexts/AttendContext';
 import AuthState from './contexts/AuthContext';
-import ReviewState from './contexts/ReviewContext';
 import Navbar from './components/Navbar';
-import Subjects from './components/Subjects';
+import SubjectPage from './pages/SubjectPage';
 import Footer from './components/Footer';
-import Signup from './components/Signup';
-import Login from './components/Login';
-import Home from './components/Home';
-import Reviews from './components/Reviews';
+import SignupPage from './pages/SignupPage';
+import LoginPage from './pages/LoginPage';
+import HomePage from './pages/HomePage';
+import ReviewPage from './pages/ReviewPage';
 import Splash from './components/Splash';
 
 const App = () => {
@@ -31,25 +30,23 @@ const App = () => {
     <Router>
       <AuthState setProgress={setProgress}>
         <AttendState setProgress={setProgress}>
-          <ReviewState setProgress={setProgress}>
             {showComponent ? (
               <>
                 <LoadingBar color="#f8cf38" progress={progress} height={4} />
                 <Navbar />
                 <ToastContainer />
                 <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/attendance" element={<Subjects />} />
-                  <Route path="/signup" element={<Signup />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/reviews" element={<Reviews />} />
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/attendance" element={<SubjectPage />} />
+                  <Route path="/signup" element={<SignupPage />} />
+                  <Route path="/login" element={<LoginPage />} />
+                  <Route path="/reviews" element={<ReviewPage />} />
                 </Routes>
                 <Footer />
               </>
             ) : (
               <Splash />
             )}
-          </ReviewState>
         </AttendState>
       </AuthState>
     </Router>

@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { motion } from "framer-motion";
 import "../index.css";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContext";
 
-const Home = () => {
+const HomePage = () => {
+  const { isAuthenticated } = useContext(AuthContext);
   return (
     <div className="home">
       {/* First home-body */}
@@ -18,11 +20,15 @@ const Home = () => {
           <span>Present</span> and <span>Productive</span>
         </h1>
         <h5>
-          Joining Hands with AtCOM for Better Attendance scheduling and Bunk
+          Joining Hands with Attendify for Better Attendance scheduling and Bunk
           Management.
         </h5>
-        <Link to="/signup">
-          Signup for free <i className="fa-solid fa-arrow-right"></i>
+        <Link to={isAuthenticated ? "/attendance" : "/signup"}>
+          {isAuthenticated ? (
+            <>Go to attendance page <i className="fa-solid fa-arrow-right"></i></>
+          ) : (
+            <>Signup for free <i className="fa-solid fa-arrow-right"></i></>
+          )}
         </Link>
         <div className="subsBg">
           <div>
@@ -43,14 +49,18 @@ const Home = () => {
         viewport={{ once: true }}
       >
         <h2>
-          Track your attendance percentage accordingly with <span>AtCOM</span>
+          Track your attendance percentage accordingly with <span>Attendify</span>
         </h2>
         <h5>
           Add and track unlimited subjects! Get real time analytics for all your
           subjects!
         </h5>
-        <Link to="/signup">
-          Try Now <i className="fa-solid fa-arrow-right"></i>
+        <Link to={isAuthenticated ? "/attendance" : "/signup"}>
+          {isAuthenticated ? (
+            <>View Your Analytics <i className="fa-solid fa-arrow-right"></i></>
+          ) : (
+            <>Try Now <i className="fa-solid fa-arrow-right"></i></>
+          )}
         </Link>
         <div className="subsBg">
           <div>
@@ -90,4 +100,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;

@@ -1,8 +1,8 @@
 import React, { useContext, useRef, useState } from 'react';
-import '../index.css';
+import '../../index.css';
 import Popup from 'reactjs-popup';
-import { AttendContext } from '../contexts/AttendContext';
-import { notify } from '../utils/toast';
+import { AttendContext } from '../../contexts/AttendContext';
+import { notify } from '../../utils/toast';
 
 const SubItem = ({ sub, goal }) => {
   const { deleteSub, updateSub } = useContext(AttendContext);
