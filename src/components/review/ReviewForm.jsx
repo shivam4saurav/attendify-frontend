@@ -1,28 +1,21 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import '../../index.css';
 import { motion } from 'framer-motion';
-import {reviewsApi} from '../../services/api';
-import {notify} from '../../utils/toast';
+import { reviewsApi } from '../../services/api';
+import { notify } from '../../utils/toast';
 
-
-const ReviewForm = ({setAllReviews}) => {
+const ReviewForm = ({ setAllReviews }) => {
   const [postReview, setPostReview] = useState({ name: '', review: '' });
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
   const addReview = async (name, review) => {
     setLoading(true);
-    setError(null);
 
     try {
       const { data } = await reviewsApi.create(name, review);
 
       if (data.success) {
-        console.log("setAllReviews", setAllReviews);
-        setAllReviews((prev) => {
-          console.log("prev", prev);
-          return [data.data, ...prev];
-        });
+        setAllReviews((prev) => [data.data, ...prev]);
         notify.success('Review posted');
       }
     } catch (err) {

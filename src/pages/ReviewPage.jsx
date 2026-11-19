@@ -1,17 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../index.css';
 import { motion } from 'framer-motion';
 import Loader from '../components/Loader';
 import ReviewForm from '../components/review/ReviewForm';
 import ReviewCard from '../components/review/ReviewCard';
-import {reviewsApi} from '../services/api';
-import {notify} from '../utils/toast';
-
+import { reviewsApi } from '../services/api';
+import { notify } from '../utils/toast';
 
 const ReviewPage = () => {
   const [allReviews, setAllReviews] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   
   const fetchAllReviews = async () => {
     setLoading(true);

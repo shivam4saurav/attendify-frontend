@@ -1,6 +1,6 @@
 import React, { createContext, useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { authApi, setAccessToken, clearAccessToken } from '../services/api';
+import { authApi, clearAccessToken } from '../services/api';
 import { notify } from '../utils/toast';
 
 export const AuthContext = createContext();
