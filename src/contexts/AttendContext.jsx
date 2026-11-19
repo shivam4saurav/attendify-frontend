@@ -13,7 +13,7 @@ const AttendState = (props) => {
     props.setProgress(30);
     setLoad(true);
 
-    try {
+    try { 
       const { data } = await attendanceApi.getAll();
       props.setProgress(70);
 

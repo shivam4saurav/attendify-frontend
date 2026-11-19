@@ -1,0 +1,39 @@
+name: Uptime Keep-Alive
+
+on:
+  schedule:
+    # Runs every 10 minutes to prevent Render free-tier spinning down (15m sleep inactivity window)
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+jobs:
+  ping:
+    name: Health Check Ping
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Backend Health Check
+        run: |
+          TARGET_URL="${{ secrets.BACKEND_URL }}"
+          if [ -z "$TARGET_URL" ]; then
+            TARGET_URL="https://attendify-backend-936z.onrender.com"
+          fi
+          echo "Pinging backend at $TARGET_URL/health at $(date -u)..."
+          
+          HTTP_RESPONSE=$(curl -sS -w "\nHTTP_STATUS:%{http_code}\nTIME:%{time_total}s" --max-time 45 "$TARGET_URL/health" || true)
+          echo "$HTTP_RESPONSE"
+          
+          STATUS=$(echo "$HTTP_RESPONSE" | grep "HTTP_STATUS" | cut -d':' -f2)
+          if [ "$STATUS" = "200" ]; then
+            echo "✅ Backend server is awake and healthy!"
+          else
+            echo "⚠️ Backend returned status $STATUS (or woke up from standby)"
+          fi
+
+      - name: Ping Frontend
+        run: |
+          FRONT_URL="${{ secrets.FRONTEND_URL }}"
+          if [ -z "$FRONT_URL" ]; then
+            FRONT_URL="https://attendify.vercel.app"
+          fi
+          echo "Pinging frontend at $FRONT_URL..."
+          curl -sS -o /dev/null -w "Frontend HTTP Status: %{http_code}\n" --max-time 20 "$FRONT_URL" || true
