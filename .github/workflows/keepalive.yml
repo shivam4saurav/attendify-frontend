@@ -15,7 +15,7 @@ jobs:
         run: |
           TARGET_URL="${{ secrets.BACKEND_URL }}"
           if [ -z "$TARGET_URL" ]; then
-            TARGET_URL="https://attendify-backend-936z.onrender.com"
+            TARGET_URL="https://attendify-backend-cz3l.onrender.com"
           fi
           echo "Pinging backend at $TARGET_URL/health at $(date -u)..."
           
